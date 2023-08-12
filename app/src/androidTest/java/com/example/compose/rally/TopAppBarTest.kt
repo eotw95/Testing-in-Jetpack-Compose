@@ -16,7 +16,7 @@ class TopAppBarTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun rallyTopAppBarTest() {
+fun rallyTopAppBarTest_currentTabSelected() {
         composeTestRule.setContent {
             val allScreens = RallyScreen.values().toList()
             RallyTheme {
@@ -36,17 +36,15 @@ class TopAppBarTest {
     fun rallyTopAppBarTest_currentLabelExists() {
         composeTestRule.setContent {
             val allScreens = RallyScreen.values().toList()
-            RallyTheme {
-                RallyTopAppBar(
-                    allScreens = allScreens,
-                    onTabSelected = {},
-                    currentScreen = RallyScreen.Accounts
-                )
-            }
-            composeTestRule.onRoot().printToLog("currentLabelExists")
-            composeTestRule
-                .onNodeWithContentDescription(RallyScreen.Accounts.name)
-                .assertExists()
+            RallyTopAppBar(
+                allScreens = allScreens,
+                onTabSelected = {},
+                currentScreen = RallyScreen.Accounts
+            )
         }
+        composeTestRule.onRoot().printToLog("currentLabelExists")
+        composeTestRule
+            .onNodeWithContentDescription(RallyScreen.Accounts.name)
+            .assertExists()
     }
 }
