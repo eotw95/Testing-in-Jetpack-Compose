@@ -42,6 +42,8 @@ fun rallyTopAppBarTest_currentTabSelected() {
                 currentScreen = RallyScreen.Accounts
             )
         }
+        // assertExitsなどの処理をUIスレッド(メインスレッド)で実行するとException発生するので
+        // setContent{}ブロック内では呼んではいけない
         composeTestRule.onRoot().printToLog("currentLabelExists")
         composeTestRule
             .onNodeWithContentDescription(RallyScreen.Accounts.name)
